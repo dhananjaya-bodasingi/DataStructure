@@ -14,15 +14,6 @@ public class LinkedList {
 		head=tempNode;
 	}
 	
-	public void deleteAtBeginning() {
-		if (head == null) {
-			System.out.println("List is empty tp delte");
-			return;
-		}
-		System.out.println("Deleteing" + head.data + " from the beginning..");
-		head = head.next;
-	}
-	
 	public void insertAtEnd(String data) {
 		Node tempNode = new Node(data);
 		
@@ -84,6 +75,30 @@ public class LinkedList {
 			tempNode = tempNode.next ;
 		}System.out.println("Deleting " + tempNode.next.data + " from the end...");
         tempNode.next = null;
+	}
+	
+	public void deleteAtPosition(int position) {
+		if (head == null) {
+			System.out.println("List is empty");
+		}
+		if ( position < 1 ) {
+			System.out.println("invalid position");
+			return;
+		}
+		if ( position  == 1) {
+			deleteAtBegenning();
+			return;
+		}
+		Node tempNode = head;
+		for ( int i =1; tempNode != null && i<position-1; i++) {
+			tempNode = tempNode.next;
+		}
+		if ( tempNode == null || tempNode.next == null) {
+			System.out.println("Position out of range!");
+            return;
+        }
+        System.out.println("Deleting " + tempNode.next.data + " from position " + position + "...");
+        tempNode.next = tempNode.next.next;
 	}
 	
 	public void printList() {
